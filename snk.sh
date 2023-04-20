@@ -7,7 +7,7 @@ qemu-system-x86_64 \
 	-drive file=debian-img/bullseye_snk.img,format=raw \
 	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10031-:22 \
 	-net nic,model=e1000 \
-	--bt-dev=hci1 \
+	-device qemu-xhci,id=xhci -device usb-host,bus=xhci.0,vendorid=0x13d3,productid=0x3568 \
 	-enable-kvm \
 	-nographic \
 	-pidfile vm_snk.pid \

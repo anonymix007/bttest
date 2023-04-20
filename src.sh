@@ -7,7 +7,7 @@ qemu-system-x86_64 \
 	-drive file=debian-img/bullseye_src.img,format=raw \
 	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
 	-net nic,model=e1000 \
-	-serial unix:/tmp/bt-server-bredr \
+	-device qemu-xhci,id=xhci -device usb-host,bus=xhci.0,vendorid=0x0bda,productid=0x8771 \
 	-enable-kvm \
 	-nographic \
 	-pidfile vm_src.pid \

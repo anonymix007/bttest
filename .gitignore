@@ -1,0 +1,6 @@
+linux-6.2.11/
+debian-img/
+vm_*.log
+vm_*.pid
+usb_bd.txt
+running.config
