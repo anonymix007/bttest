@@ -8,6 +8,7 @@ qemu-system-x86_64 \
 	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10031-:22 \
 	-net nic,model=e1000 \
 	-device qemu-xhci,id=xhci -device usb-host,bus=xhci.0,vendorid=0x13d3,productid=0x3568 \
+	-audio driver=pa,model=hda,id=snd0\
 	-enable-kvm \
 	-nographic \
 	-pidfile vm_snk.pid \
