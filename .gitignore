@@ -1,4 +1,4 @@
-linux-6.2.11/
+linux-6.2.y/
 debian-img/
 vm_*.log
 vm_*.pid
