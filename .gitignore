@@ -4,3 +4,4 @@ vm_*.log
 vm_*.pid
 usb_bd.txt
 running.config
+mark
