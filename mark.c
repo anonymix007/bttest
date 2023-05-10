@@ -7,6 +7,9 @@
 
 char *codecs[] = {
     "ldac",
+    "aac",
+    "aptx-hd",
+    "aptx",
     "sbc",
 };
 
@@ -64,16 +67,17 @@ int main(void) {
         }
 
         while (true) {
-            total++;
             size_t src_size = 0;
             size_t snk_size = 0;
             if (fread(&src_size, sizeof(src_size), 1, src) < 1) break;
             if (fread(sent.v, sizeof(sent.v[0]), src_size, src) < src_size) break;
             if (fread(&snk_size, sizeof(snk_size), 1, snk) < 1) break;
             if (fread(received.v, sizeof(received.v[0]), snk_size, snk) < snk_size) break;
+            total++;
             while (snk_size != src_size) {
                 if (fread(&src_size, sizeof(src_size), 1, src) < 1) break;
                 if (fread(sent.v, sizeof(sent.v[0]), src_size, src) < snk_size) break;
+                total++;
             }
             sent.len = src_size;
             received.len = snk_size;
@@ -88,7 +92,7 @@ int main(void) {
         printf("Codec %s: %s", codecs[i], pass ? PASS : FAIL);
 
         if (!pass) {
-            printf(". Details: total %zu, received %zu, lost %lf %%\n", total, good, 100 - mark);
+            printf(". Details: total %zu, received %zu, lost %lf%%\n", total, good, 100 - mark);
         }
 
         fclose(snk);
